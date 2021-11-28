@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import { ThemeProvider } from 'next-themes';
+import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <SessionProvider session={pageProps.session}>
+      <ThemeProvider enabled={true} attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </SessionProvider>
+  );
 }
 
 export default MyApp
